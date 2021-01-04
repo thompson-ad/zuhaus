@@ -1,0 +1,15 @@
+{
+  "name": "zuhaus",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:thompson-ad/zuhaus.git",
+  "author": "Aaron Thompson <thompson_ad@outlook.com>",
+  "license": "MIT",
+  "workspaces": [
+    "services/*"
+  ],
+  "volta": {
+    "node": "14.15.4",
+    "yarn": "1.22.10"
+  }
+}
