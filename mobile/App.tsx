@@ -1,35 +1,40 @@
-import { StatusBar } from "expo-status-bar";
 import * as React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import AppLoading from "expo-app-loading";
+import {
+  useFonts,
+  FanwoodText_400Regular,
+} from "@expo-google-fonts/fanwood-text";
+import { createStackNavigator } from "@react-navigation/stack";
 
-const getMoviesFromApiAsync = async () => {
-  try {
-    let response = await fetch(
-      "http://192.168.1.249:8888/.netlify/functions/movies"
-    );
-    let json = await response.json();
-    console.log(json);
-    return json;
-  } catch (error) {
-    console.error(error);
-  }
+import Programme from "./screens/Programme";
+import WorkoutCoached from "./screens/WorkoutCoached";
+
+import { Workout } from "./features/getWorkouts/interface";
+
+export type RootStackParamList = {
+  Programme: undefined;
+  Workout: { workout: Workout };
 };
 
+const Stack = createStackNavigator<RootStackParamList>();
+
 export default function App() {
-  getMoviesFromApiAsync();
+  let [fontsLoaded] = useFonts({
+    FanwoodText_400Regular,
+    "SpaceGrotesk-Regular": require("./assets/fonts/SpaceGrotesk-Regular.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Hello!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Programme" component={Programme} />
+        <Stack.Screen name="Workout" component={WorkoutCoached} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
