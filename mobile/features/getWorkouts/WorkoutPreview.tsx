@@ -1,6 +1,6 @@
 import * as React from "react";
 import { View, ImageBackground, StyleSheet } from "react-native";
-import { TextLarge, Caption } from "../../components/Text";
+import { TextHeader3, TaglineLarge } from "../../components/Text";
 
 interface WorkoutPreviewProps {
   title: string;
@@ -22,10 +22,16 @@ const WorkoutPreview = ({
         style={styles.workoutImage}
       >
         <View style={styles.workoutInfo}>
-          <TextLarge textStyle={{ color: "#FFF" }}>{title}</TextLarge>
-          <Caption textStyle={{ color: "#FFF" }}>
-            {duration ? `${duration} mins` : ""}
-          </Caption>
+          <View style={styles.workoutTitle}>
+            <TextHeader3 textStyle={styles.workoutTitleText}>
+              {title}
+            </TextHeader3>
+          </View>
+          <View style={styles.workoutDuration}>
+            <TaglineLarge textStyle={styles.workoutDurationText}>
+              {duration ? `${duration} mins` : ""}
+            </TaglineLarge>
+          </View>
         </View>
       </ImageBackground>
     </View>
@@ -49,18 +55,24 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     paddingHorizontal: 20,
     paddingBottom: 25,
-    backgroundColor: "rgba(0,0,0,0.15)",
+    backgroundColor: "rgba(0,0,0,0.20)",
   },
   workoutTitle: {
     marginTop: 5,
-    flex: 0.6,
     alignSelf: "flex-end",
+    flex: 0.6,
+  },
+  workoutTitleText: {
+    color: "#FFF",
   },
   workoutDuration: {
     marginTop: 5,
-    flex: 0.4,
-    textAlign: "right",
     alignSelf: "flex-end",
+    flex: 0.4,
+  },
+  workoutDurationText: {
+    color: "#FFF",
+    textAlign: "right",
   },
 });
 

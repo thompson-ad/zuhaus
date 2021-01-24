@@ -24,14 +24,16 @@ const WorkoutCoached = ({ route }: WorkoutCoachedProps) => {
         useNativeControls
         style={styles.workoutVideo}
       />
-      <View style={styles.workoutInfo}>
+      <View style={styles.workoutMeta}>
         <Tagline>
           W{workout.week} &gt; D{workout.day}
         </Tagline>
         <Tagline>{workout.duration / 60} MIN</Tagline>
       </View>
-      <View style={{ paddingHorizontal: 40 }}>
-        <LargeTitle>{workout.name}</LargeTitle>
+      <View style={styles.workoutInfo}>
+        <View style={styles.workoutInfoTitle}>
+          <LargeTitle>{workout.name}</LargeTitle>
+        </View>
         <MyText>{workout.info}</MyText>
       </View>
     </ScrollView>
@@ -48,13 +50,20 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 220,
   },
-  workoutInfo: {
+  workoutMeta: {
     flexDirection: "row",
     paddingHorizontal: 40,
-    paddingVertical: 25,
+    paddingVertical: 15,
+    marginBottom: 15,
     justifyContent: "space-between",
     borderBottomColor: "rgba(33, 33, 33, 0.2)",
     borderBottomWidth: 1,
+  },
+  workoutInfo: {
+    paddingHorizontal: 40,
+  },
+  workoutInfoTitle: {
+    marginBottom: 5,
   },
 });
 

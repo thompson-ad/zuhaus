@@ -26,13 +26,14 @@ const Programme = ({ navigation }: ProgrammeProps) => {
 
   return (
     <View style={styles.container}>
-      <StatusBar style="light" />
-      <LargeTitle>Zuhaus At Home</LargeTitle>
+      <View style={styles.sectionHeader}>
+        <LargeTitle>Zuhaus At Home</LargeTitle>
+      </View>
       <MyText>
         Here you can view the entire programme. We encourage you to follow the
         workouts in order to gain as much as possible from the programme.
       </MyText>
-      <View style={{ flex: 1 }}>
+      <View style={styles.listWorkoutsContainer}>
         <ListWorkouts
           workouts={workouts}
           direction="horizontal"
@@ -50,8 +51,10 @@ const styles = StyleSheet.create({
     margin: 20,
   },
   sectionHeader: {
-    marginTop: 20,
     marginBottom: 5,
+  },
+  listWorkoutsContainer: {
+    marginTop: 20,
   },
 });
 

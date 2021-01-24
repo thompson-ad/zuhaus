@@ -1,7 +1,7 @@
 import * as React from "react";
 import { SectionList, FlatList, TouchableOpacity } from "react-native";
 import WorkoutPreview from "./WorkoutPreview";
-import { LargeTitle } from "../../components/Text";
+import { TextHeader2 } from "../../components/Text";
 import { Workouts } from "./interface";
 import { ProfileScreenNavigationProp } from "../../screens/Programme";
 
@@ -23,7 +23,7 @@ const ListWorkouts = ({
       keyExtractor={(item) => item.id}
       renderSectionHeader={({ section }) => (
         <>
-          <LargeTitle>{section.title}</LargeTitle>
+          <TextHeader2>{section.title}</TextHeader2>
           {direction === "horizontal" ? (
             <FlatList
               horizontal

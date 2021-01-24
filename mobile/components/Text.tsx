@@ -48,9 +48,9 @@ export const TextHeader2: React.FC = ({ children }) => (
   </TextHeader>
 );
 
-export const TextHeader3: React.FC = ({ children }) => (
+export const TextHeader3: React.FC<TextProps> = ({ textStyle, children }) => (
   <TextHeader>
-    <Text style={styles.textHeader3}>{children}</Text>
+    <Text style={[styles.textHeader3, textStyle]}>{children}</Text>
   </TextHeader>
 );
 
@@ -61,29 +61,29 @@ export const Caption: React.FC<TextProps> = ({ textStyle, children }) => (
   </MyText>
 );
 
-export const CaptionLarge: React.FC = ({ children }) => (
+export const CaptionLarge: React.FC<TextProps> = ({ textStyle, children }) => (
   <MyText>
-    <Text style={styles.captionLarge}>{children}</Text>
+    <Text style={[styles.captionLarge, textStyle]}>{children}</Text>
   </MyText>
 );
 
 // TAGLINE TEXT
-export const Tagline: React.FC = ({ children }) => (
-  <MyText>
-    <Text style={styles.tagline}>{children}</Text>
-  </MyText>
+export const Tagline: React.FC<TextProps> = ({ textStyle, children }) => (
+  <TextHeader>
+    <Text style={[styles.tagline, textStyle]}>{children}</Text>
+  </TextHeader>
 );
 
-export const TaglineSmall: React.FC = ({ children }) => (
-  <MyText>
-    <Text style={styles.taglineSmall}>{children}</Text>
-  </MyText>
+export const TaglineSmall: React.FC<TextProps> = ({ textStyle, children }) => (
+  <TextHeader>
+    <Text style={[styles.taglineSmall, textStyle]}>{children}</Text>
+  </TextHeader>
 );
 
-export const TaglineLarge: React.FC = ({ children }) => (
-  <MyText>
-    <Text style={styles.taglineLarge}>{children}</Text>
-  </MyText>
+export const TaglineLarge: React.FC<TextProps> = ({ textStyle, children }) => (
+  <TextHeader>
+    <Text style={[styles.taglineLarge, textStyle]}>{children}</Text>
+  </TextHeader>
 );
 
 const styles = StyleSheet.create({
