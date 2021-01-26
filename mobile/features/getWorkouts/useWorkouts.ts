@@ -23,9 +23,9 @@ export const useWorkouts = () => {
     setState({ ...state, isLoading: true });
     try {
       const data = await apiClient<Workouts[]>("airtable");
-      setState({ ...state, isSuccess: true, data });
+      setState({ ...state, isLoading: false, isSuccess: true, data });
     } catch (error) {
-      setState({ ...state, isError: true, error });
+      setState({ ...state, isLoading: false, isError: true, error });
     }
   }, []);
 
