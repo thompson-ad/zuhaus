@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import * as React from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
@@ -18,10 +17,14 @@ interface ProgrammeProps {
 }
 
 const Programme = ({ navigation }: ProgrammeProps) => {
-  const workouts = useWorkouts();
+  const { isError, isLoading, error, data: workouts } = useWorkouts();
 
-  if (!workouts) {
+  if (isLoading) {
     return <Text>Loading...</Text>;
+  }
+
+  if (isError) {
+    return <Text>{error.message}</Text>;
   }
 
   return (
