@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Fanwood+Text&display=swap');
+
+@font-face {
+  font-family: SpaceGrotesk-Regular;
+  src: url('/fonts/SpaceGrotesk-Regular.woff2') format('woff2'), url('/fonts/SpaceGrotesk-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: SpaceGrotesk-Medium;
+  src: url('/fonts/SpaceGrotesk-Medium.woff2') format('woff2'), url('/fonts/SpaceGrotesk-Medium.woff') format('woff');
+}
+
+@font-face {
+  font-family: SpaceGrotesk-Bold;
+  src: url('/fonts/SpaceGrotesk-Bold.woff2') format('woff2'), url('/fonts/SpaceGrotesk-Bold.woff') format('woff');
+}
+
+body {
+  background-color: var(--color-bg);
+}

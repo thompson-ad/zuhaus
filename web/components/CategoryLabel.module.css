@@ -1,0 +1,17 @@
+.root {
+  color: var(--color-light);
+  padding: 1px 14px;
+  text-transform: uppercase;
+}
+
+.category-fitness {
+  background-color: var(--color-fitness);
+}
+
+.category-nutrition {
+  background-color: var(--color-nutrition);
+}
+
+.category-mindfulness {
+  background-color: var(--color-mindfulness);
+}

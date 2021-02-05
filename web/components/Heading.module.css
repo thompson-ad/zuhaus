@@ -1,0 +1,40 @@
+.root {
+  font-family: SpaceGrotesk-Regular, sans-serif;
+  color: var(--color-dark);
+}
+
+.color-light {
+  color: var(--color-light);
+}
+
+.size-display {
+  font-size: var(--font-size-display);
+}
+
+.size-xlarge {
+  font-size: var(--font-size-h1);
+}
+
+.size-large {
+  font-size: var(--font-size-h2);
+}
+
+.size-medium {
+  font-size: var(--font-size-h3);
+}
+
+.size-small {
+  font-size: var(--font-size-h4);
+}
+
+.size-xsmall {
+  font-size: var(--font-size-h5);
+}
+
+.size-xxsmall {
+  font-size: var(--font-size-h6);
+}
+
+.weight-medium {
+  font-family: SpaceGrotesk-Medium, sans-serif;
+}

@@ -1,0 +1,23 @@
+/* 
+ Use .root class as a base.
+ Use .{prop}-{value} convention for style props. E.g. .color-primary
+ Use .{prop} convention if the prop value is boolean
+*/
+
+.root {
+  font-family: '"Fanwood Text", serif';
+  color: var(--color-dark);
+  font-size: var(--font-size-body);
+}
+
+.color-light {
+  color: var(--color-light);
+}
+
+.size-large {
+  font-size: var(--font-size-body-large);
+}
+
+.size-small {
+  font-size: var(--font-size-body-large);
+}
