@@ -72,10 +72,20 @@ export default {
       },
     },
     {
+      title: 'Duration (min)',
+      name: 'duration',
+      type: 'number',
+    },
+    {
       name: 'mainContent',
       title: 'Main content',
       type: 'array',
       of: [{ type: 'block' }],
+    },
+    {
+      name: 'summary',
+      title: 'Summary',
+      type: 'text',
     },
   ],
 }

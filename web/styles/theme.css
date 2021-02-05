@@ -1,0 +1,20 @@
+:root {
+  --color-dark: #212121;
+  --color-light: #fff;
+  --color-bg: #f6f6f6;
+  --color-fitness: #e63c2e;
+  --color-nutrition: #476b2d;
+  --color-mindfulness: #60b4e7;
+
+  --font-size-display: 3.5em;
+  --font-size-h1: 2.5em;
+  --font-size-h2: 2em;
+  --font-size-h3: 1.5em;
+  --font-size-h4: 1.125em;
+  --font-size-h5: 1em;
+  --font-size-h6: 0.875em;
+
+  --font-size-body-large: 1.125em;
+  --font-size-body: 1em;
+  --font-size-body-small: 0.875em;
+}
