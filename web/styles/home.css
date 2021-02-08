@@ -1,0 +1,7 @@
+.recently-added {
+  display: grid;
+  grid-template-columns: 540px 540px;
+  grid-row: auto auto;
+  grid-column-gap: 30px;
+  grid-row-gap: 30px;
+}

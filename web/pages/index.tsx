@@ -23,8 +23,10 @@ export default function Home({ content }) {
         </Container>
       </header>
       <main>
-        <h1>Recently Added</h1>
-        <Container>{content && content.map((c) => <SliderItem key={c._id} {...c} />)}</Container>
+        <Container>
+          <h1>Recently Added</h1>
+          <div className="recently-added">{content && content.map((c) => <SliderItem key={c._id} {...c} />)}</div>
+        </Container>
       </main>
       <footer>
         <Container>hello</Container>
@@ -42,12 +44,13 @@ const blogQuery = groq`
     "imageUrl": image.asset->url, 
     title, 
     "avatarUrl": specialist->image.asset->url,
-    "excerpt": summary[0].children[0].text
+    "excerpt": summary
   }[0...25]
 `
 
 export async function getStaticProps({ preview = false }) {
   const content = await getClient(preview).fetch(blogQuery)
+  console.log(JSON.stringify(content, null, 2))
   return {
     props: {
       content,
