@@ -1,0 +1,16 @@
+.navigation {
+  width: 100vw;
+}
+
+.navigation__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.navigation__links {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
