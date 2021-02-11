@@ -6,7 +6,8 @@ export default {
   type: 'document',
   icon,
   fields: [
-    { name: 'name', title: 'Name', type: 'string' },
+    { name: 'firstName', title: 'First Name', type: 'string' },
+    { name: 'secondName', title: 'Second Name', type: 'string' },
     { name: 'title', title: 'Title', type: 'string' },
     {
       name: 'image',
@@ -24,7 +25,7 @@ export default {
   ],
   preview: {
     select: {
-      title: 'name',
+      title: 'firstName',
       media: 'image',
     },
   },

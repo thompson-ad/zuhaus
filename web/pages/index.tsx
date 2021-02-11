@@ -41,16 +41,16 @@ const blogQuery = groq`
     "category" : category[0], 
     date,
     duration,
-    "imageUrl": image.asset->url, 
+    image,
     title, 
-    "avatarUrl": specialist->image.asset->url,
-    "excerpt": summary
+    "avatar": specialist->image,
+    "excerpt": summary,
+    "slug": slug.current
   }[0...25]
 `
 
 export async function getStaticProps({ preview = false }) {
   const content = await getClient(preview).fetch(blogQuery)
-  console.log(JSON.stringify(content, null, 2))
   return {
     props: {
       content,
