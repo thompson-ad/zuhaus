@@ -1,6 +1,7 @@
 // any request to /api/auth will hit this
 import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
+import { connectToDB } from '../../../db'
 
 export default (req, res) =>
   NextAuth(req, res, {
@@ -33,5 +34,45 @@ export default (req, res) =>
     // It doesn't look good though so we tell it to use our one at /signin
     pages: {
       signIn: '/signin',
+    },
+    callbacks: {
+      // add the user id to the session id
+      // session object gets passed to jwt callback as first param
+      async session(session, user) {
+        session.user.id = user.id
+        return session
+      },
+      // async jwt(tokenPayload, user, account, profile, isNewUser) {
+      //   const { db } = await connectToDB()
+
+      //   if (isNewUser) {
+      //     // ADD GETTING STARTED DATA
+      //     // const personalFolder = await folder.createFolder(db, { createdBy: `${user.id}`, name: 'Getting Started' })
+      //     // await doc.createDoc(db, {
+      //     //   name: 'Start Here',
+      //     //   folder: personalFolder._id,
+      //     //   createdBy: `${user.id}`,
+      //     //   content: {
+      //     //     time: 1556098174501,
+      //     //     blocks: [
+      //     //       {
+      //     //         type: 'header',
+      //     //         data: {
+      //     //           text: 'Some default content',
+      //     //           level: 2,
+      //     //         },
+      //     //       },
+      //     //     ],
+      //     //     version: '2.12.4',
+      //     //   },
+      //     // })
+      //   }
+
+      //   if (tokenPayload && user) {
+      //     return { ...tokenPayload, id: `${user.id}` }
+      //   }
+
+      //   return tokenPayload
+      // },
     },
   })
