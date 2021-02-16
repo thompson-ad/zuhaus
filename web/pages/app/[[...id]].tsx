@@ -4,7 +4,6 @@ import { Pane, Dialog, majorScale } from 'evergreen-ui'
 import { useRouter } from 'next/router'
 import User from '../../components/User'
 import Logo from '../../components/Logo'
-import { UserSession } from '../../types'
 
 const App = () => {
   const router = useRouter()
