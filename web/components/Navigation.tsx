@@ -1,10 +1,12 @@
 import React, { FC } from 'react'
 import NextLink from 'next/link'
+import { useAuth } from '../lib/auth'
 import Container from './Container'
 import Logo from '../components/Logo'
 import styles from './Navigation.module.css'
 
 const Navigation: FC<{ links?: { name: string; link: string }[] }> = ({ links }) => {
+  const auth = useAuth()
   return (
     <nav className={styles.navigation}>
       <Container>
@@ -22,9 +24,9 @@ const Navigation: FC<{ links?: { name: string; link: string }[] }> = ({ links })
                     </Pane>
                   ))
                 : null} */}
-            <NextLink href="/signin">
+            <NextLink href={auth.user ? '/app' : '/signin'}>
               <a>
-                <button>Sign up</button>
+                <button>{auth.user ? 'Dashboard' : 'Sign up'}</button>
               </a>
             </NextLink>
           </div>

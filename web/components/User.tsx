@@ -1,9 +1,10 @@
 import React, { FC } from 'react'
 import { Pane, Position, Avatar, Popover, Menu, LogOutIcon, majorScale, Text } from 'evergreen-ui'
-import { signOut } from 'next-auth/client'
+import { useAuth } from '../lib/auth'
 import { UserSession } from '../types'
 
 const User: FC<{ user: UserSession }> = ({ user }) => {
+  const auth = useAuth()
   return (
     <Pane position="fixed" top={20} right={20}>
       <Popover
@@ -20,7 +21,7 @@ const User: FC<{ user: UserSession }> = ({ user }) => {
             </Pane>
             <Pane background="white">
               <Menu>
-                <Menu.Item icon={LogOutIcon} intent="danger" onSelect={signOut}>
+                <Menu.Item icon={LogOutIcon} intent="danger" onSelect={() => auth.signout()}>
                   Sign out
                 </Menu.Item>
               </Menu>
@@ -36,7 +37,7 @@ const User: FC<{ user: UserSession }> = ({ user }) => {
           alignItems="center"
           justifyContent="center"
         >
-          <Avatar src={user.image} size={48} cursor="pointer" />
+          <Avatar src={user.photoUrl} size={48} cursor="pointer" />
         </Pane>
       </Popover>
     </Pane>
