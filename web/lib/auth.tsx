@@ -1,6 +1,7 @@
 import * as React from 'react'
 import firebase from './firebase'
 import { AuthContextInterface } from '../types'
+import { createUser } from './db'
 
 const AuthContext = React.createContext<AuthContextInterface | null>(null)
 
@@ -20,12 +21,13 @@ function useProvideAuth() {
   const handleUser = (rawUser) => {
     if (rawUser) {
       const user = formatUser(rawUser)
-      setLoading(false)
+      createUser(user.uid, user)
       setUser(user)
+      setLoading(false)
       return user
     } else {
+      setUser(null)
       setLoading(false)
-      setUser(false)
       return false
     }
   }
