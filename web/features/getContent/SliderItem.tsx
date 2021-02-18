@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { urlFor } from '../../utils/sanity'
+import { urlFor } from '../../lib/sanity'
 import Heading from '../../components/Heading'
 import Text from '../../components/Text'
 import CategoryLabel from '../../components/CategoryLabel'

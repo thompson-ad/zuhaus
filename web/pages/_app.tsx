@@ -1,6 +1,5 @@
-import 'reflect-metadata'
 import React from 'react'
-import { Provider } from 'next-auth/client'
+import { AuthProvider } from '../lib/auth'
 import '../styles/reset.css'
 import '../styles/theme.css'
 import '../styles/global.css'
@@ -9,9 +8,9 @@ import '../styles/signin.css'
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Provider session={pageProps.session}>
+    <AuthProvider>
       <Component {...pageProps} />
-    </Provider>
+    </AuthProvider>
   )
 }
 

@@ -1,5 +1,5 @@
-import { StyleSheet } from "react-native";
-import { colours } from "./colours";
+import {StyleSheet} from 'react-native';
+import {colours} from './colours';
 
 export const typography = StyleSheet.create({
   textDark: {
@@ -9,10 +9,10 @@ export const typography = StyleSheet.create({
     color: colours.white,
   },
   body: {
-    fontFamily: "FanwoodText_400Regular",
+    fontFamily: 'Fanwood Text',
   },
   heading: {
-    fontFamily: "SpaceGrotesk-Regular",
+    fontFamily: 'SpaceGrotesk-Regular',
   },
   headline1: {
     fontSize: 40,

@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { groq } from 'next-sanity'
-import { getClient } from '../utils/sanity'
+import { getClient } from '../lib/sanity'
 import SliderItem from '../features/getContent/SliderItem'
 import Container from '../components/Container'
 import Navigation from '../components/Navigation'

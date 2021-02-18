@@ -1,18 +1,18 @@
 import * as React from 'react'
 import Image from 'next/image'
-import { signIn, useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
 import Heading from '../components/Heading'
+import { useAuth } from '../lib/auth'
 
 const SignIn = () => {
-  const [session, loading] = useSession()
+  const auth = useAuth()
   const router = useRouter()
 
   React.useEffect(() => {
-    if (session) {
+    if (auth.user) {
       router.push('/app')
     }
-  }, [session, router])
+  }, [auth, router])
 
   return (
     <div className="signin">
@@ -23,7 +23,7 @@ const SignIn = () => {
         <Heading as="h1" size="display">
           Sign In
         </Heading>
-        <button onClick={() => signIn('github')}>Sign in with github</button>
+        <button onClick={() => auth.signinWithGoogle()}>Sign in with Google</button>
       </div>
     </div>
   )

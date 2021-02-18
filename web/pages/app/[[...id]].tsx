@@ -1,21 +1,17 @@
 import * as React from 'react'
-import { getSession, useSession } from 'next-auth/client'
+import { useAuth } from '../../lib/auth'
 import { Pane, Dialog, majorScale } from 'evergreen-ui'
 import { useRouter } from 'next/router'
 import User from '../../components/User'
 import Logo from '../../components/Logo'
-import { UserSession } from '../../types'
-// Import resources here
-// NextJS gets rid of this in the browser
-import { folder, doc, connectToDB } from '../../db'
 
 const App = () => {
   const router = useRouter()
-  // you could also access the session as a prop
-  const [session, loading] = useSession()
+  const { loading, user } = useAuth()
+
   if (loading) return null
 
-  if (!loading && !session) {
+  if (!loading && !user) {
     // you are not authorised
     // show a modal to sign in
     // ensure you cannot cancel it, close it click an overalay or click escape
@@ -42,7 +38,7 @@ const App = () => {
         </Pane>
       </Pane>
       <Pane marginLeft={300} width="calc(100vw - 300px)" height="100vh" overflowY="auto" position="relative">
-        <User user={session.user} />
+        <User user={user} />
       </Pane>
     </Pane>
   )
@@ -72,46 +68,46 @@ export default App
 // so this way is a little easier
 // but you could have done the above way and made a layout component
 
-export async function getServerSideProps(context) {
-  // this part of our app is a dynamic page, not a static page
-  // we don't want to pregenerate the page at build time
-  // let's fetch everything initially on the server and then handle mutations on the client
+// export async function getServerSideProps(context) {
+//   // this part of our app is a dynamic page, not a static page
+//   // we don't want to pregenerate the page at build time
+//   // let's fetch everything initially on the server and then handle mutations on the client
 
-  // the pageprops in _app.tsx now gets the session and passes it to the provider
-  // we can then use the useSession() hook
-  const session: { user: UserSession } = await getSession(context)
-  // not signed in
-  if (!session || !session.user) {
-    return { props: {} }
-  }
+//   // the pageprops in _app.tsx now gets the session and passes it to the provider
+//   // we can then use the useSession() hook
+//   // const session: { user: UserSession } = await getSession(context)
+//   // not signed in
+//   // if (!session || !session.user) {
+//   //   return { props: {} }
+//   // }
 
-  // you might be tempted to fetch() the resources from your own API here
-  // We didn't make an API and
-  // In the docs you are recommended not to do that as this is serverside logic
-  // There's no point in your application reaching outside to the internet to just come back to itself to hit the API when you can just go straight to the database here
-  // That's for querying data but mutating data we need to do this client side and we will need an API
+//   // you might be tempted to fetch() the resources from your own API here
+//   // We didn't make an API and
+//   // In the docs you are recommended not to do that as this is serverside logic
+//   // There's no point in your application reaching outside to the internet to just come back to itself to hit the API when you can just go straight to the database here
+//   // That's for querying data but mutating data we need to do this client side and we will need an API
 
-  //   const { db } = await connectToDB()
-  //   const folders = await folder.getFolders(db, session.user.id)
-  //   props.folders = folders
+//   //   const { db } = await connectToDB()
+//   //   const folders = await folder.getFolders(db, session.user.id)
+//   //   props.folders = folders
 
-  // NOTE the params object on the context is going to be an array of ids as we have a [[...id]] filename
-  //   if (context.params.id) {
-  //     const activeFolder = folders.find((f) => f._id === context.params.id[0])
-  //     const activeDocs = await doc.getDocsByFolder(db, activeFolder._id)
-  //     props.activeFolder = activeFolder
-  //     props.activeDocs = activeDocs
+//   // NOTE the params object on the context is going to be an array of ids as we have a [[...id]] filename
+//   //   if (context.params.id) {
+//   //     const activeFolder = folders.find((f) => f._id === context.params.id[0])
+//   //     const activeDocs = await doc.getDocsByFolder(db, activeFolder._id)
+//   //     props.activeFolder = activeFolder
+//   //     props.activeDocs = activeDocs
 
-  //     const activeDocId = context.params.id[1]
+//   //     const activeDocId = context.params.id[1]
 
-  //     if (activeDocId) {
-  //       props.activeDoc = await doc.getOneDoc(db, activeDocId)
-  //     }
-  //   }
+//   //     if (activeDocId) {
+//   //       props.activeDoc = await doc.getOneDoc(db, activeDocId)
+//   //     }
+//   //   }
 
-  const props: any = { session }
+//   const props: any = { session }
 
-  return {
-    props,
-  }
-}
+//   return {
+//     props,
+//   }
+// }

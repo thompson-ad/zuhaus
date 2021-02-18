@@ -1,15 +1,14 @@
-import { Db, MongoClient } from 'mongodb'
-import { NextApiRequest, NextApiResponse } from 'next'
-
 export interface UserSession {
-  id: string
-  image: string
+  uid: string
   email: string
   name: string
+  provider: string
+  photoUrl: string
 }
 
-export interface Request extends NextApiRequest {
-  db: Db
-  dbClient: MongoClient
-  user: { email: string; id: string }
+export interface AuthContextInterface {
+  user: UserSession
+  loading: boolean
+  signinWithGoogle: () => void
+  signout: () => void
 }
