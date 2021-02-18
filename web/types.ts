@@ -9,6 +9,6 @@ export interface UserSession {
 export interface AuthContextInterface {
   user: UserSession
   loading: boolean
-  signinWithGitHub: () => void
+  signinWithGoogle: () => void
   signout: () => void
 }

@@ -23,7 +23,7 @@ const SignIn = () => {
         <Heading as="h1" size="display">
           Sign In
         </Heading>
-        <button onClick={() => auth.signinWithGitHub()}>Sign in with github</button>
+        <button onClick={() => auth.signinWithGoogle()}>Sign in with Google</button>
       </div>
     </div>
   )

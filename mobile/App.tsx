@@ -1,40 +1,25 @@
-import * as React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import AppLoading from "expo-app-loading";
-import {
-  useFonts,
-  FanwoodText_400Regular,
-} from "@expo-google-fonts/fanwood-text";
-import { createStackNavigator } from "@react-navigation/stack";
-
-import Programme from "./screens/Programme";
-import WorkoutCoached from "./screens/WorkoutCoached";
-
-import { Workout } from "./features/getWorkouts/interface";
+import 'react-native-gesture-handler';
+import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import Welcome from './screens/Welcome';
 
 export type RootStackParamList = {
-  Programme: undefined;
-  Workout: { workout: Workout };
+  Home: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
 
-export default function App() {
-  let [fontsLoaded] = useFonts({
-    FanwoodText_400Regular,
-    "SpaceGrotesk-Regular": require("./assets/fonts/SpaceGrotesk-Regular.ttf"),
-  });
+declare const global: {HermesInternal: null | {}};
 
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  }
-
+const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Programme" component={Programme} />
-        <Stack.Screen name="Workout" component={WorkoutCoached} />
+        <Stack.Screen name="Home" component={Welcome} />
       </Stack.Navigator>
     </NavigationContainer>
   );
-}
+};
+
+export default App;

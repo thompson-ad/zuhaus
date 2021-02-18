@@ -30,12 +30,14 @@ function useProvideAuth() {
     }
   }
 
-  const signinWithGitHub = () => {
+  const signinWithGoogle = () => {
     setLoading(true)
     return firebase
       .auth()
-      .signInWithPopup(new firebase.auth.GithubAuthProvider())
-      .then((response) => handleUser(response.user))
+      .signInWithPopup(new firebase.auth.GoogleAuthProvider())
+      .then((response) => {
+        handleUser(response.user)
+      })
   }
 
   const signout = () => {
@@ -53,7 +55,7 @@ function useProvideAuth() {
   return {
     user,
     loading,
-    signinWithGitHub,
+    signinWithGoogle,
     signout,
   }
 }
