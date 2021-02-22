@@ -1,16 +1,21 @@
 // Client responsible for data fetching
-const apiURL = 'http://192.168.1.19:8888/.netlify/functions/'
+const apiURL = 'http://192.168.1.19:8888/.netlify/functions/';
 
 interface ApiClientSettings {
-  data?: any
-  token?: string
-  headers?: any
-  customConfig?: any
+  data?: any;
+  token?: string;
+  headers?: any;
+  customConfig?: any;
 }
 
 async function apiClient<T>(
   endpoint: string,
-  { data, token, headers: customHeaders, ...customConfig }: ApiClientSettings = {},
+  {
+    data,
+    token,
+    headers: customHeaders,
+    ...customConfig
+  }: ApiClientSettings = {},
 ): Promise<T> {
   const config = {
     method: data ? 'POST' : 'GET',
@@ -21,14 +26,14 @@ async function apiClient<T>(
       ...customHeaders,
     },
     ...customConfig,
-  }
-  return window.fetch(`${apiURL}/${endpoint}`, config).then(async (response) => {
+  };
+  return fetch(`${apiURL}/${endpoint}`, config).then(async (response) => {
     if (response.ok) {
-      return response.json()
+      return response.json();
     } else {
-      return Promise.reject(data)
+      return Promise.reject(data);
     }
-  })
+  });
 }
 
-export { apiClient }
+export {apiClient};

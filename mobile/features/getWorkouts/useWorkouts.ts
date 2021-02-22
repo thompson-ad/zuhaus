@@ -1,40 +1,41 @@
-import * as React from 'react'
-import { Workouts } from './interface'
-import { apiClient } from '../../utils/apiClient'
+import * as React from 'react';
+import {Workouts} from '../../types';
+import {apiClient} from '../../utils/apiClient';
 
 interface GetWorkouts {
-  data: Workouts[]
-  isLoading: boolean
-  isSuccess: boolean
-  isError: boolean
-  error: any
+  data: Workouts[];
+  isLoading: boolean;
+  isSuccess: boolean;
+  isError: boolean;
+  error: any;
 }
 
 export const useWorkouts = () => {
   const [state, setState] = React.useState<GetWorkouts>({
-    data: [{ title: '', data: [] }],
+    data: [{title: '', data: []}],
     isLoading: true,
     isSuccess: false,
     isError: false,
     error: null,
-  })
+  });
 
   const fetch = React.useCallback(async () => {
-    setState({ ...state, isLoading: true })
+    setState({...state, isLoading: true});
     try {
-      const data = await apiClient<Workouts[]>('airtable')
-      setState({ ...state, isLoading: false, isSuccess: true, data })
+      const data = await apiClient<Workouts[]>('airtable');
+      setState({...state, isLoading: false, isSuccess: true, data});
     } catch (error) {
-      setState({ ...state, isLoading: false, isError: true, error })
+      setState({...state, isLoading: false, isError: true, error});
     }
-  }, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   React.useEffect(() => {
-    fetch()
-  }, [fetch])
+    fetch();
+  }, [fetch]);
 
   return {
     ...state,
     fetch,
-  }
-}
+  };
+};

@@ -1,6 +1,6 @@
-import * as React from "react";
-import { View, ImageBackground, StyleSheet } from "react-native";
-import { TextHeader3, TaglineLarge } from "../../components/Text";
+import * as React from 'react';
+import {View, ImageBackground, StyleSheet} from 'react-native';
+import {TextHeader3, TaglineLarge} from '../../components/Text';
 
 interface WorkoutPreviewProps {
   title: string;
@@ -8,19 +8,14 @@ interface WorkoutPreviewProps {
   thumbnail: string;
 }
 
-const WorkoutPreview = ({
-  title,
-  duration,
-  thumbnail,
-}: WorkoutPreviewProps) => {
+const WorkoutPreview = ({title, duration, thumbnail}: WorkoutPreviewProps) => {
   return (
     <View style={styles.workout}>
       <ImageBackground
         source={{
           uri: thumbnail,
         }}
-        style={styles.workoutImage}
-      >
+        style={styles.workoutImage}>
         <View style={styles.workoutInfo}>
           <View style={styles.workoutTitle}>
             <TextHeader3 textStyle={styles.workoutTitleText}>
@@ -29,7 +24,7 @@ const WorkoutPreview = ({
           </View>
           <View style={styles.workoutDuration}>
             <TaglineLarge textStyle={styles.workoutDurationText}>
-              {duration ? `${duration} mins` : ""}
+              {duration ? `${duration} mins` : ''}
             </TaglineLarge>
           </View>
         </View>
@@ -45,34 +40,34 @@ const styles = StyleSheet.create({
     width: 260,
   },
   workoutImage: {
-    width: "100%",
-    height: "100%",
-    flexDirection: "column",
-    justifyContent: "flex-end",
+    width: '100%',
+    height: '100%',
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
   },
   workoutInfo: {
     flex: 1,
-    flexDirection: "row",
+    flexDirection: 'row',
     paddingHorizontal: 20,
     paddingBottom: 25,
-    backgroundColor: "rgba(0,0,0,0.20)",
+    backgroundColor: 'rgba(0,0,0,0.20)',
   },
   workoutTitle: {
     marginTop: 5,
-    alignSelf: "flex-end",
+    alignSelf: 'flex-end',
     flex: 0.6,
   },
   workoutTitleText: {
-    color: "#FFF",
+    color: '#FFF',
   },
   workoutDuration: {
     marginTop: 5,
-    alignSelf: "flex-end",
+    alignSelf: 'flex-end',
     flex: 0.4,
   },
   workoutDurationText: {
-    color: "#FFF",
-    textAlign: "right",
+    color: '#FFF',
+    textAlign: 'right',
   },
 });
 

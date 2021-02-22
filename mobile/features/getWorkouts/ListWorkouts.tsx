@@ -1,44 +1,39 @@
-import * as React from "react";
-import { SectionList, FlatList, TouchableOpacity } from "react-native";
-import WorkoutPreview from "./WorkoutPreview";
-import { TextHeader2 } from "../../components/Text";
-import { Workouts } from "./interface";
-import { ProfileScreenNavigationProp } from "../../screens/Programme";
+import * as React from 'react';
+import {SectionList, FlatList, TouchableOpacity} from 'react-native';
+import WorkoutPreview from './WorkoutPreview';
+import {TextHeader2, LargeTitle} from '../../components/Text';
+import {Workouts} from '../../types';
+import {ProgrammeScreenNavigationProp} from '../../screens/Programme';
 
 interface ListWorkoutsProps {
   workouts: Workouts[];
-  direction: "vertical" | "horizontal";
-  navigation?: ProfileScreenNavigationProp;
+  direction: 'vertical' | 'horizontal';
+  navigation?: ProgrammeScreenNavigationProp;
 }
 
-const ListWorkouts = ({
-  workouts,
-  direction,
-  navigation,
-}: ListWorkoutsProps) => {
+const ListWorkouts = ({workouts, direction, navigation}: ListWorkoutsProps) => {
   return (
     <SectionList
       stickySectionHeadersEnabled={false}
       sections={workouts}
       keyExtractor={(item) => item.id}
-      renderSectionHeader={({ section }) => (
+      renderSectionHeader={({section}) => (
         <>
           <TextHeader2>{section.title}</TextHeader2>
-          {direction === "horizontal" ? (
+          {direction === 'horizontal' ? (
             <FlatList
               horizontal
               data={section.data}
-              renderItem={({ item }) => {
+              renderItem={({item}) => {
                 return (
                   <TouchableOpacity
                     onPress={() =>
                       navigation
-                        ? navigation.navigate("Workout", {
+                        ? navigation.navigate('Workout Coached', {
                             workout: item,
                           })
                         : null
-                    }
-                  >
+                    }>
                     <WorkoutPreview
                       title={item.name}
                       duration={item.duration ? item.duration / 60 : null}
@@ -53,8 +48,8 @@ const ListWorkouts = ({
         </>
       )}
       // Make this a flexible component that will render horizontally or vertically
-      renderItem={({ item }) => {
-        if (direction === "horizontal") {
+      renderItem={({item}) => {
+        if (direction === 'horizontal') {
           return null;
         }
         return (

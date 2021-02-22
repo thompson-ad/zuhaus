@@ -1,72 +1,73 @@
 import * as React from 'react';
-import {
-  ImageBackground,
-  StyleSheet,
-  TouchableOpacity,
-  Button,
-} from 'react-native';
-import {TextLarge} from '../components/Text';
+import {StyleSheet, View, Image} from 'react-native';
+import {GoogleSigninButton} from '@react-native-community/google-signin';
 import {useAuth} from '../lib/auth';
+import {TextHeader3} from '../components/Text';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {RootStackParamList} from '../App';
 
-const Welcome = () => {
-  const {user, signinWithGoogle, signout} = useAuth();
+type WelcomeNavigationProp = StackNavigationProp<RootStackParamList, 'Welcome'>;
 
-  if (!user) {
-    return (
-      <ImageBackground
-        style={styles.background}
-        source={require('../assets/background.jpg')}>
-        <TextLarge textStyle={styles.buttonText}>Sign in</TextLarge>
-        <TouchableOpacity style={styles.button}>
-          <Button title="Google Sign-In" onPress={() => signinWithGoogle()} />
-        </TouchableOpacity>
-      </ImageBackground>
-    );
-  }
+interface WelcomeScreenProps {
+  navigation: WelcomeNavigationProp;
+}
+
+const Welcome = ({navigation}: WelcomeScreenProps) => {
+  const {user, loading, signinWithGoogle} = useAuth();
+
+  React.useEffect(() => {
+    if (user) {
+      navigation.navigate('Programme');
+    }
+  }, [navigation, user]);
 
   return (
-    <ImageBackground
-      style={styles.background}
-      source={require('../assets/background.jpg')}>
-      <TextLarge
-        textStyle={styles.buttonText}>{`Welcome ${user.email}`}</TextLarge>
-      <TouchableOpacity style={styles.button}>
-        <Button title="Sign Out" onPress={() => signout()} />
-      </TouchableOpacity>
-    </ImageBackground>
+    <View style={styles.container}>
+      <View style={styles.logoContainer}>
+        <Image source={require('../assets/logo.png')} style={styles.logo} />
+      </View>
+      <View style={styles.captionContainer}>
+        <TextHeader3>Inspired by the best</TextHeader3>
+        <TextHeader3>delivered by us</TextHeader3>
+      </View>
+      <View style={styles.signInButtonContainer}>
+        <GoogleSigninButton
+          style={styles.signInWithGoogleButton}
+          size={GoogleSigninButton.Size.Wide}
+          color={GoogleSigninButton.Color.Light}
+          onPress={signinWithGoogle}
+          disabled={loading}
+        />
+      </View>
+    </View>
   );
 };
 
 export default Welcome;
 
 const styles = StyleSheet.create({
-  background: {
+  container: {
     flex: 1,
+  },
+  logoContainer: {
+    flex: 0.25,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  logo: {
+    width: 175,
+    height: 85,
+  },
+  captionContainer: {
+    flex: 0.2,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  title: {
-    color: 'white',
-    textAlign: 'center',
+  signInButtonContainer: {
+    alignItems: 'center',
   },
-  titleContainer: {
-    position: 'absolute',
-    top: 170,
-  },
-  button: {
-    width: 200,
-    borderRadius: 15,
-    borderWidth: 3,
-    borderColor: 'white',
-    backgroundColor: 'white',
-    padding: 5,
-    margin: '2%',
-  },
-  buttonText: {
-    textAlign: 'center',
-  },
-  inlineText: {
-    textAlign: 'center',
-    marginTop: '5%',
+  signInWithGoogleButton: {
+    width: 192,
+    height: 48,
   },
 });

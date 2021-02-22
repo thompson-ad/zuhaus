@@ -40,12 +40,15 @@ function useProvideAuth() {
   }, []);
 
   const signinWithGoogle = async () => {
+    setLoading(true);
     // Get the users ID token
     const {idToken} = await GoogleSignin.signIn();
     // Create a Google credential with the token
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
     // Sign-in the user with the credential
-    return auth().signInWithCredential(googleCredential);
+    auth().signInWithCredential(googleCredential);
+    //sign in complete
+    setLoading(false);
   };
 
   const signout = () =>
